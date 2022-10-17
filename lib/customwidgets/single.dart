@@ -227,21 +227,13 @@ Container(height: 22,
     
   
       InkWell(
-  
-    
-  
+ 
     onTap:()async{
   
     unitData=data;
   
       Navigator.pop(context);
-  
-    
-  
-    
-  
-    
-  
+
     },
   
     
@@ -249,13 +241,10 @@ Container(height: 22,
     child: ListTile(title: Text(data,
   
     //style: TextStyle(fontSize: 15),
-  
     )
   
     ),
-  
-    
-  
+
       )
   
     

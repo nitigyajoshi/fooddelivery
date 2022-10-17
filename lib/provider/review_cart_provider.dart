@@ -67,6 +67,17 @@ FirebaseFirestore.instance.collection("Review").doc(FirebaseAuth.instance.curren
 notifyListeners();
 }
   
+ totalPrice(){
+double total=0.0;
+review_cart_provider.forEach((element) { 
+total+=element.cartPrice! * element.cartQuantity!.toInt();
+
+});
+
+return total;
+}
+
+
 }
 /**
  * 

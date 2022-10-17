@@ -73,8 +73,9 @@ setState(() {
     Widget continueButton = MaterialButton(
       child: Text("Yes"),
       onPressed: () {
-        reviewCartProvider!.deleteReview(id);
+      reviewCartProvider!.deleteReview(id);
         Navigator.of(context).pop();
+      
       },
     );
 
@@ -101,8 +102,8 @@ setState(() {
   @override
   Widget build(BuildContext context) {
 
-    //reviewCartProvider = Provider.of<ReviewCartProvider>(context);
-    productProvider=Provider.of<ProductProvider>(context);
+    reviewCartProvider = Provider.of<ReviewCartProvider>(context);
+   // productProvider=Provider.of<ProductProvider>(context);
    //reviewCartProvider!.getReviewCartData();
      
 
@@ -165,6 +166,7 @@ setState(() {
                               SizedBox(width: 10,),
                               widget.i==1?IconButton(onPressed:(){
                             showAlertDialog(context,widget.productId);
+                            
                           }, icon: Icon(Icons.delete),iconSize: 20,):Container(height:0)
                             ],
                                         )              )
@@ -242,10 +244,11 @@ else{
   setState(() {
     count--;
   });
-  reviewCartProvider!.updateCart(widget.productId, widget.productName, widget.productImage, widget.productPrice, count);
+ 
+ reviewCartProvider!.updateCart(widget.productId, widget.productName, widget.productImage, widget.productPrice, count);
 
 }
-
+ //reviewCartProvider!.updateCart(widget.productId, widget.productName, widget.productImage, widget.productPrice, count);
 },child:Icon(Icons.remove)),
 Text("${count}"),
 InkWell(onTap:(){

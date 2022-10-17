@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fooddelivery/customwidgets/review_single.dart';
 import 'package:fooddelivery/customwidgets/search_widget.dart';
 import 'package:fooddelivery/customwidgets/single.dart';
@@ -9,6 +10,7 @@ import 'package:fooddelivery/model/review_cart_model.dart';
 import 'package:fooddelivery/provider/review_cart_provider.dart';
 import 'package:fooddelivery/provider/review_cart_provider.dart';
 import 'package:fooddelivery/provider/wishlist_provider.dart';
+import 'package:fooddelivery/screens/delivery_details/delivery_details.dart';
 import 'package:provider/provider.dart';
 
 
@@ -109,20 +111,24 @@ int quantity=0;
     getAddAndQuantity();
    reviewCartProvider = Provider.of<ReviewCartProvider>(context);
     reviewCartProvider!.getReviewCartData();
-    print('object');
-    print(reviewCartProvider!.review_cart_provider[0].cartunit);
+
     return Scaffold(
 
       
       bottomNavigationBar: ListTile(
-        title: Text("Total Aount"),
-        // subtitle: Text(
-        //   "\$ ${reviewCartProvider.getTotalPrice()}",
-        //   style: TextStyle(
-        //     color: Colors.green[900],
-        //   ),
-        // ),
-        trailing: Container(
+        title:
+        // Column(children:[ 
+          Text("Total Aount"),
+      //  Text('\$ ${reviewCartProvider!.totalPrice()}')
+        
+       // ]),
+        subtitle: Text(
+          "\$ ${reviewCartProvider!.totalPrice()}",
+          style: TextStyle(
+      color: Colors.green[900],
+           ),
+         ),
+         trailing: Container(
           width: 160,
           child: MaterialButton(
             child: Text("Submit"),
@@ -135,12 +141,15 @@ int quantity=0;
             onPressed: () {
 //reviewCartProvider.addUser(cartId, cartName, cartImage, cartPrice, cartQuantity, isAdd)
 
+reviewCartProvider!.review_cart_provider.isEmpty?Fluttertoast.showToast(msg: "No Cart Data Found"):Container(height: 0,);
+
+
             //print('object');
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) => DeliveryDetails(),
-              //   ),
-              // );
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Delivery(),
+                ),
+              );
             },
           ),
         ),
